@@ -454,17 +454,27 @@ async function callAI(msg){
 }
 async function send(texto){
   const inp=document.getElementById('inp');
-  const msg=texto||inp.value.trim();if(!msg)return;
-  inp.value='';inp.style.height='';
-  addMsg(msg,'user');showTyp();
-  const e=detEp(msg);if(e)setEp(e);
-  const t0=Date.now();
+  const msg=texto||inp.value.trim();
+  if(!msg)return;
+
+  inp.value='';
+  inp.style.height='';
+
+  addMsg(msg,'user');
+  showTyp();
+
+  const e=detEp(msg);
+  if(e)setEp(e);
+
   try{
-    return res.status(200).json({
-  text: "Hola, soy Pablo. Esta es una respuesta de prueba."
-});
+    const respuesta = await callAI(msg);
+
+    hideTyp();
+    addMsg(respuesta,'pablo');
+
   }catch(err){
     hideTyp();
+    console.error(err);
     addMsg('Mirá... se me fue la señal. ¿Me repetís lo que preguntaste?','pablo');
   }
 }
