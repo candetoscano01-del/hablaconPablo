@@ -96,17 +96,15 @@ html,body{height:100%;overflow:hidden;font-family:"Raleway",sans-serif;font-weig
   bottom:0;
   left:50%;
   transform:translateX(-50%);
-  height:92vh;
-  max-height:92vh;
+  height:95vh;
   width:auto;
   max-width:95%;
   object-fit:contain;
   object-position:center bottom;
-  transform-origin:center bottom;
+  z-index:10;
   filter:drop-shadow(-6px 0 25px rgba(0,0,0,0.8)) drop-shadow(6px 0 25px rgba(0,0,0,0.5));
   animation:respira 5.5s ease-in-out infinite;
   transition:filter 0.5s;
-  z-index:10;
 }
 @keyframes respira{
   0%,100%{transform:translateX(-50%) scaleY(1) translateY(0);}
