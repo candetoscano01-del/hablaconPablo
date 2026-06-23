@@ -484,9 +484,8 @@ async function send(texto){
     if(n%3===0)showSugs();
 
   }catch(err){
-    hideTyp();
-    addMsg('ERROR REAL: ' + err.message,'pablo');
-  }
+  hideTyp();
+  addMsg('Mirá... se me fue la señal. ¿Me repetís lo que preguntaste?','pablo');
 }
 document.getElementById('sbtn').onclick=()=>send();
 document.getElementById('inp').addEventListener('keydown',function(e){
