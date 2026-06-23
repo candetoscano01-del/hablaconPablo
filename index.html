@@ -458,6 +458,7 @@ async function callAI(msg){
   hist.push({role:'assistant',content:t});
   return t;
 }
+
 async function send(texto){
   const inp=document.getElementById('inp');
   const msg=texto||inp.value.trim();
@@ -472,37 +473,57 @@ async function send(texto){
   const e=detEp(msg);
   if(e)setEp(e);
 
+  const t0=Date.now();
+
   try{
-    const respuesta = await callAI(msg);
+    const r = await callAI(msg);
+    const el = Date.now()-t0;
+
+    if(el<800) await new Promise(rv=>setTimeout(rv,800-el));
 
     hideTyp();
-    addMsg(respuesta,'pablo');
+    addMsg(r,'pablo');
     pabloHabla();
 
-    const e2=detEp(respuesta);
+    const e2=detEp(r);
     if(e2&&e2!==ep)setEp(e2);
+
     if(n%3===0)showSugs();
 
   }catch(err){
-  hideTyp();
-  addMsg('Mirá... se me fue la señal. ¿Me repetís lo que preguntaste?','pablo');
+    hideTyp();
+    addMsg('Mirá... se me fue la señal. ¿Me repetís lo que preguntaste?','pablo');
+  }
 }
+
 document.getElementById('sbtn').onclick=()=>send();
+
 document.getElementById('inp').addEventListener('keydown',function(e){
-  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}
+  if(e.key==='Enter'&&!e.shiftKey){
+    e.preventDefault();
+    send();
+  }
 });
+
 document.getElementById('inp').addEventListener('input',function(){
-  this.style.height='';this.style.height=Math.min(this.scrollHeight,74)+'px';
+  this.style.height='';
+  this.style.height=Math.min(this.scrollHeight,74)+'px';
 });
+
 async function init(){
-  buildBg();showTyp();
+  buildBg();
+  showTyp();
+
   await new Promise(r=>setTimeout(r,1500));
+
   hideTyp();
   addMsg('Buenas... Mirá quién llegó. Soy Pablo Novak, el último habitante de Epecuén. Viví el pueblo lleno de gente, lo vi desaparecer bajo el agua, y volví cuando todos se fueron. Pregunte nomás.','pablo');
   pabloHabla();
+
   await new Promise(r=>setTimeout(r,300));
   showSugs();
 }
+
 window.addEventListener('DOMContentLoaded',init);
 </script>
 </body>
