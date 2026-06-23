@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-latest',
+        model: 'claude-3-5-sonnet-20241022',
         max_tokens: 300,
         system: typeof system === 'string' ? system.slice(0, 8000) : '',
         messages: safeMessages
