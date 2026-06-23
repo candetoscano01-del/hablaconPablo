@@ -460,12 +460,9 @@ async function send(texto){
   const e=detEp(msg);if(e)setEp(e);
   const t0=Date.now();
   try{
-    const r=await callAI(msg);
-    const el=Date.now()-t0;
-    if(el<800)await new Promise(rv=>setTimeout(rv,800-el));
-    hideTyp();addMsg(r,'pablo');pabloHabla();
-    const e2=detEp(r);if(e2&&e2!==ep)setEp(e2);
-    if(n%3===0)showSugs();
+    return res.status(200).json({
+  text: "Hola, soy Pablo. Esta es una respuesta de prueba."
+});
   }catch(err){
     hideTyp();
     addMsg('Mirá... se me fue la señal. ¿Me repetís lo que preguntaste?','pablo');
