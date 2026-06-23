@@ -94,17 +94,15 @@ html,body{height:100%;overflow:hidden;font-family:"Raleway",sans-serif;font-weig
 #pablo-img{
   position:absolute;
   bottom:0;
-  /* Centrado horizontal */
   left:50%;
   transform:translateX(-50%);
-  /* Altura = toda la pantalla menos el nameplate */
-  height:100vh;
+  height:92vh;
+  max-height:92vh;
   width:auto;
-  /* Importante: no recortar, mostrar completo */
+  max-width:95%;
   object-fit:contain;
   object-position:center bottom;
   transform-origin:center bottom;
-  /* Sombra para separarlo del fondo */
   filter:drop-shadow(-6px 0 25px rgba(0,0,0,0.8)) drop-shadow(6px 0 25px rgba(0,0,0,0.5));
   animation:respira 5.5s ease-in-out infinite;
   transition:filter 0.5s;
